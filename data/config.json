@@ -1,0 +1,25 @@
+{
+  "timezone": "America/New_York",
+  "tweetTimeLabel": "Income Engine — Daily Allocation",
+  "recurringBuysUsd": [
+    { "ticker": "BTS", "label": "BTS Spot", "usd": 11, "type": "crypto", "coingeckoId": "bitcoin" },
+    { "ticker": "BLOX", "usd": 5, "type": "equity", "stooqSymbol": "blox.us" },
+    { "ticker": "BTCI", "usd": 5, "type": "equity", "stooqSymbol": "btci.us" },
+    { "ticker": "STRC", "usd": 6, "type": "equity", "stooqSymbol": "strc.us" },
+    { "ticker": "MSTR", "usd": 2, "type": "equity", "stooqSymbol": "mstr.us" },
+    { "ticker": "MSTY", "usd": 2, "type": "equity", "stooqSymbol": "msty.us" }
+  ],
+  "annualYieldAssumptions": {
+    "BTS": 0.0,
+    "BLOX": 0.20,
+    "BTCI": 0.20,
+    "STRC": 0.1125,
+    "MSTR": 0.0,
+    "MSTY": 0.30
+  },
+  "post": {
+    "enabled": false,
+    "hashtags": ["Bitcoin", "IncomeInvesting"],
+    "appendNote": "Synthetic portfolio for transparency + stress-testing."
+  }
+}

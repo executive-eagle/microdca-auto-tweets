@@ -1,0 +1,12 @@
+{
+  "name": "microdca-auto-tweets",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "daily": "node scripts/runDaily.js"
+  },
+  "dependencies": {
+    "playwright": "^1.50.0",
+    "twitter-api-v2": "^1.18.2"
+  }
+}
