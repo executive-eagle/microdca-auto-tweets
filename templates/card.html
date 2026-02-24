@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>MicroDCA Card</title>
+  <style>
+    body { margin: 0; background: #0a0a0a; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
+    .card {
+      width: 1200px; height: 675px;
+      padding: 48px;
+      box-sizing: border-box;
+      background: #0a0a0a;
+      color: #eaeaea;
+      position: relative;
+      overflow: hidden;
+    }
+    .accent {
+      position: absolute; inset: -200px -200px auto auto;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle at 30% 30%, rgba(239,81,34,0.35), rgba(239,81,34,0) 60%);
+      transform: rotate(15deg);
+    }
+    h1 { margin: 0 0 10px 0; font-size: 44px; letter-spacing: -0.02em; }
+    .sub { color: #bdbdbd; margin-bottom: 28px; font-size: 18px; }
+    .grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; }
+    .box {
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      border-radius: 20px;
+      padding: 22px;
+    }
+    .box h2 { margin: 0 0 14px 0; font-size: 18px; color: #dcdcdc; font-weight: 700; }
+    .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .row:last-child { border-bottom: none; }
+    .k { color: #bdbdbd; }
+    .v { font-weight: 700; }
+    .buys { font-size: 18px; line-height: 1.55; }
+    .buyline { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.10); }
+    .buyline:last-child { border-bottom: none; }
+    .tag { position: absolute; left: 48px; bottom: 38px; color: rgba(255,255,255,0.55); font-size: 14px; }
+    .logo { position: absolute; right: 48px; bottom: 38px; color: rgba(239,81,34,0.9); font-weight: 800; letter-spacing: 0.08em; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="accent"></div>
+    <h1 id="title"></h1>
+    <div class="sub" id="dateLine"></div>
+
+    <div class="grid">
+      <div class="box">
+        <h2>Today’s Buys (Synthetic DCA)</h2>
+        <div class="buys" id="buys"></div>
+      </div>
+
+      <div class="box">
+        <h2>System Metrics</h2>
+        <div class="row"><div class="k">Current Annual Yield</div><div class="v" id="yield"></div></div>
+        <div class="row"><div class="k">Total Bought Today</div><div class="v" id="boughtToday"></div></div>
+        <div class="row"><div class="k">Projected Weekly Payment</div><div class="v" id="weekly"></div></div>
+        <div class="row"><div class="k">Projected Monthly Payment</div><div class="v" id="monthly"></div></div>
+        <div class="row"><div class="k">Total Portfolio Value</div><div class="v" id="value"></div></div>
+      </div>
+    </div>
+
+    <div class="tag" id="note"></div>
+    <div class="logo">MICRODCA</div>
+  </div>
+
+  <script>
+    const data = window.__CARD_DATA__;
+    const fmtUSD0 = (n) => n.toLocaleString(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+    const fmtUSD2 = (n) => n.toLocaleString(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 2 });
+    const fmtPct = (n) => (n*100).toFixed(2) + "%";
+
+    document.getElementById("title").textContent = data.title;
+    document.getElementById("dateLine").textContent = data.dateLine;
+
+    document.getElementById("yield").textContent = fmtPct(data.metrics.blendedYield);
+    document.getElementById("boughtToday").textContent = fmtUSD2(data.metrics.totalBoughtToday);
+    document.getElementById("weekly").textContent = fmtUSD2(data.metrics.weekly);
+    document.getElementById("monthly").textContent = fmtUSD2(data.metrics.monthly);
+    document.getElementById("value").textContent = fmtUSD0(data.metrics.portfolioValue);
+
+    const buysEl = document.getElementById("buys");
+    buysEl.innerHTML = data.buys.map(b =>
+      `<div class="buyline">
+        <div>$${Number(b.usd).toFixed(0)} — ${b.label || b.ticker}</div>
+        <div style="color:#bdbdbd;">@ ${fmtUSD2(b.price)}</div>
+      </div>`
+    ).join("");
+
+    document.getElementById("note").textContent = data.note || "";
+  </script>
+</body>
+</html>

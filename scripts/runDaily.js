@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import { getPrices } from "./prices.js";
 import { loadHoldings, saveHoldings, applyDailyBuys, computeMetrics } from "./portfolio.js";
+import { renderCardPng } from "./renderCard.js";
 
 function toIsoDateNY() {
   const now = new Date();
@@ -35,6 +36,21 @@ Total portfolio value: $${metrics.portfolioValue.toFixed(0)}
 (Posting disabled for setup test)`;
 
   console.log(text);
+
+  // -------- Render Image Card --------
+  const cardData = {
+    title: "Income Engine — Daily Allocation",
+    dateLine: isoDate,
+    buys: config.recurringBuysUsd.map(b => ({
+      ...b,
+      price: prices[b.ticker]
+    })),
+    metrics,
+    note: "Synthetic portfolio. Educational transparency."
+  };
+
+  const imgPath = await renderCardPng(cardData);
+  console.log("Card generated at:", imgPath);
 }
 
 main().catch(e => {

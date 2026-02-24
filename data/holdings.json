@@ -1,5 +1,73 @@
 {
-  "asOf": null,
-  "positions": {},
-  "ledger": []
+  "asOf": "2026-02-24",
+  "positions": {
+    "BTC": {
+      "shares": 0.0001717033,
+      "costUsd": 11
+    },
+    "BLOX": {
+      "shares": 0.325732899,
+      "costUsd": 5
+    },
+    "BTCI": {
+      "shares": 0.157629256,
+      "costUsd": 5
+    },
+    "STRC": {
+      "shares": 0.0600570542,
+      "costUsd": 6
+    },
+    "MSTR": {
+      "shares": 0.0160500762,
+      "costUsd": 2
+    },
+    "MSTY": {
+      "shares": 0.0891265597,
+      "costUsd": 2
+    }
+  },
+  "ledger": [
+    {
+      "date": "2026-02-24",
+      "ticker": "BTC",
+      "usd": 11,
+      "price": 64064,
+      "shares": 0.0001717033
+    },
+    {
+      "date": "2026-02-24",
+      "ticker": "BLOX",
+      "usd": 5,
+      "price": 15.35,
+      "shares": 0.325732899
+    },
+    {
+      "date": "2026-02-24",
+      "ticker": "BTCI",
+      "usd": 5,
+      "price": 31.72,
+      "shares": 0.157629256
+    },
+    {
+      "date": "2026-02-24",
+      "ticker": "STRC",
+      "usd": 6,
+      "price": 99.905,
+      "shares": 0.0600570542
+    },
+    {
+      "date": "2026-02-24",
+      "ticker": "MSTR",
+      "usd": 2,
+      "price": 124.61,
+      "shares": 0.0160500762
+    },
+    {
+      "date": "2026-02-24",
+      "ticker": "MSTY",
+      "usd": 2,
+      "price": 22.44,
+      "shares": 0.0891265597
+    }
+  ]
 }
