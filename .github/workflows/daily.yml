@@ -3,7 +3,7 @@ name: MicroDCA Daily Simulation
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 22 * * *"  # 5:30pm ET approx (UTC 22:30, adjust later if needed)
+    - cron: "30 22 * * *"
 
 jobs:
   run-bot:
@@ -21,5 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
+
       - name: Run simulation
         run: npm run daily
+
+      - name: Upload card artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: microdca-card
+          path: data/card.png
